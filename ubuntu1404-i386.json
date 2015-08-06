@@ -1,0 +1,109 @@
+{
+  "variables": {
+    "version": "0.1.0",
+    "cm": "nocm",
+    "cm_version": "",
+    "cleanup_pause": "",
+    "headless": "",
+    "hostname": "enisa",
+    "update": "true",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "ftp_proxy": "{{env `ftp_proxy`}}",
+    "rsync_proxy": "{{env `rsync_proxy`}}",
+    "no_proxy": "{{env `no_proxy`}}",
+    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.2-server-i386.iso",
+    "iso_checksum": "80b1a915f42cc298855bd4e298f5bfbeb61d800e"
+  },
+  "builders": [
+  {
+    "vm_name": "enisa-main",
+    "type": "virtualbox-iso",
+    "format": "ova",
+    "http_directory": "http",
+    "iso_url": "{{ user `iso_url` }}",
+    "iso_checksum": "{{ user `iso_checksum` }}",
+    "iso_checksum_type": "sha1",
+    "guest_os_type": "Ubuntu",
+    "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+    "virtualbox_version_file": ".vbox_version",
+    "ssh_username": "enisa",
+    "ssh_password": "enisa",
+    "ssh_wait_timeout": "10000s",
+    "headless": "{{ user `headless` }}",
+    "boot_command": [
+      "<esc><esc><enter><wait>",
+      "/install/vmlinuz noapic ",
+      "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+      "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+      "hostname=enisa-vm ",
+      "fb=false debconf/frontend=noninteractive ",
+      "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+      "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+      "initrd=/install/initrd.gz -- <enter>"
+    ],
+    "shutdown_command": "echo 'enisa'|sudo -S shutdown -P now",
+    "disk_size": 25000,
+    "vboxmanage": [
+      ["modifyvm", "{{.Name}}", "--memory", "1024"],
+      ["modifyvm", "{{.Name}}", "--cpus", "1"],
+      ["modifyvm", "{{.Name}}", "--clipboard", "bidirectional"],
+      ["modifyvm", "{{.Name}}", "--description", "ENISA Virtual Appliance"],
+      ["modifyvm", "{{.Name}}", "--vram", "32"]
+    ]
+  }],
+  "provisioners": [
+ {
+  	"type": "file",
+  	"source": "files/training.zip",
+  	"destination": "/home/enisa/training.zip"
+  },
+	{
+  	"type": "file",
+  	"source": "files/mobile.zip",
+  	"destination": "/home/enisa/mobile.zip"
+  },
+ 	{
+  	"type": "file",
+  	"source": "files/distorm3.zip",
+  	"destination": "/home/enisa/distorm3.zip"
+   },
+ 	{
+  	"type": "file",
+  	"source": "files/android.zip",
+  	"destination": "/home/enisa/android.zip"
+   },
+	{
+  	"type": "file",
+  	"source": "files/setup.sh",
+  	"destination": "/home/enisa/setup.sh"
+  },
+  { 
+   "type": "shell",
+    "environment_vars": [
+      "CM={{user `cm`}}",
+      "CM_VERSION={{user `cm_version`}}",
+      "CLEANUP_PAUSE={{user `cleanup_pause`}}",
+      "UPDATE={{user `update`}}",
+      "http_proxy={{user `http_proxy`}}",
+      "https_proxy={{user `https_proxy`}}",
+      "ftp_proxy={{user `ftp_proxy`}}",
+      "rsync_proxy={{user `rsync_proxy`}}",
+      "no_proxy={{user `no_proxy`}}"
+    ],
+    "execute_command": "echo 'enisa' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+    "scripts": [
+      "script/update.sh",
+      "script/desktop.sh",
+      "script/motd.sh",
+      "script/packages.sh",
+      "script/provision.sh",
+      "script/vagrant.sh",
+      "script/sshd.sh",
+      "script/vmtool.sh",
+      "script/cmtool.sh",
+      "script/minimize.sh",
+      "script/cleanup.sh"
+    ]}
+ ]
+}
