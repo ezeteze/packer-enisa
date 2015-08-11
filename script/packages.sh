@@ -6,5 +6,5 @@ apt-get -y install default-jdk default-jre ruby
 apt-get -y install thunderbird irssi
 apt-get -y install chromium-browser pepperflashplugin-nonfree
 apt-get -y install apache2 php5 php5-mcrypt
-pip install distorm3
+pip install distorm3 bottle maxminddb
 php5enmod mcrypt
