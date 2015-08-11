@@ -15,17 +15,17 @@ rm -rf /home/enisa/Desktop/Training-Material/MaltegoCarbonCE.v3.5.3.deb
 sudo mv /home/enisa/Desktop/Training-Material/html/* /var/www/html/
 rm -rf /home/enisa/Desktop/Training-Material/html/
 sudo chown -R www-data:www-data /var/www/
-echo "export PATH=$PATH:/home/enisa/android/adt-bundle-linux-x86-20140702/sdk/platform-tools:/home/enisa/android/adt-bundle-linux-x86-20140702/sdk/tools" >> /home/enisa/.bash_profile
-echo "export ANDROID_HOME=/home/enisa/android/adt-bundle-linux-x86-20140702/sdk/" >> /home/enisa/.bash_profile
-echo "export PATH=$PATH:/home/enisa/android/adt-bundle-linux-x86-20140702/sdk/platform-tools:/home/enisa/android/adt-bundle-linux-x86-20140702/sdk/tools" >> /home/enisa/.profile
-echo "export ANDROID_HOME=/home/enisa/android/adt-bundle-linux-x86-20140702/sdk/" >> /home/enisa/.profile
+echo "export PATH=$PATH:/home/enisa/android-sdk-linux/" >> /home/enisa/.bash_profile
+echo "export ANDROID_HOME=/home/enisa/android-sdk-linux/" >> /home/enisa/.bash_profile
+echo "export PATH=$PATH:/home/enisa/android-sdk-linux/" >> /home/enisa/.profile
+echo "export ANDROID_HOME=/home/enisa/android-sdk-linux/" >> /home/enisa/.profile
 source /home/enisa/.bash_profile
-unzip /home/enisa/android.zip -d /home/enisa/
+unzip /home/enisa/android-studio-ide-141.2135290-linux.zip -d /home/enisa/
 chmod -R 777 /home/enisa/android/
-echo "no" | /home/enisa/android/adt-bundle-linux-x86-20140702/sdk/tools/android create avd -n Enisa -t 2 --abi default/armeabi-v7a
+echo "no" | /home/enisa/android-sdk-linux/tools/android create avd -n Enisa -t 2 --abi default/armeabi-v7a
 echo "hw.keyboard=yes" >> /home/enisa/.android/avd/Enisa.avd/config.ini
 echo "hw.dPad=yes" >> /home/enisa/.android/avd/Enisa.avd/config.ini
-/home/enisa/android/adt-bundle-linux-x86-20140702/sdk//tools/mksdcard 100M /home/enisa/.android/avd/Enisa.avd/sdcard.img
+/home/enisa/android-sdk-linux/tools/mksdcard 100M /home/enisa/.android/avd/Enisa.avd/sdcard.img
 rm -rf /home/enisa/setup.sh
 rm -rf /home/enisa/training.zip
 rm -rf /home/enisa/android.zip

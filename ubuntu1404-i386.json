@@ -70,8 +70,8 @@
    },
  	{
   	"type": "file",
-  	"source": "files/android.zip",
-  	"destination": "/home/enisa/android.zip"
+  	"source": "files/android-studio-ide-141.2135290-linux.zip",
+  	"destination": "/home/enisa/android-studio-ide-141.2135290-linux.zip"
    },
 	{
   	"type": "file",
