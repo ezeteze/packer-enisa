@@ -15,9 +15,11 @@ echo lxsession -s Lubuntu -e LXDE > /home/enisa/.xsession
 chown enisa:enisa /home/enisa/.xsession
 # Zeuscan Plugin 
 wget -O /usr/lib/python2.7/dist-packages/volatility/plugins/zeusscan.py https://volatility.googlecode.com/svn-history/r2835/trunk/contrib/plugins/malware/zeusscan.py
-unzip /home/enisa/distorm3.zip -d /tmp
-python /tmp/distorm3/setup.py build
-python /tmp/distorm3/setup.py build install
+
+Will install this from pypi
+#unzip /home/enisa/distorm3.zip -d /tmp
+#python /tmp/distorm3/setup.py build
+#python /tmp/distorm3/setup.py build install
 
 #Delete what we don't need
 rm -rf /home/enisa/mobile.zip
