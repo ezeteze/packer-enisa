@@ -12,8 +12,8 @@
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "no_proxy": "{{env `no_proxy`}}",
-    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.2-server-i386.iso",
-    "iso_checksum": "80b1a915f42cc298855bd4e298f5bfbeb61d800e"
+    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-i386.iso",
+    "iso_checksum": "352009d5b44f0e97c9558919f0147c0c"
   },
   "builders": [
   {
@@ -23,7 +23,7 @@
     "http_directory": "http",
     "iso_url": "{{ user `iso_url` }}",
     "iso_checksum": "{{ user `iso_checksum` }}",
-    "iso_checksum_type": "sha1",
+    "iso_checksum_type": "md5",
     "guest_os_type": "Ubuntu",
     "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
     "virtualbox_version_file": ".vbox_version",
