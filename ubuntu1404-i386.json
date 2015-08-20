@@ -73,6 +73,11 @@
   	"source": "files/android-studio-ide-141.2135290-linux.zip",
   	"destination": "/home/enisa/android-studio-ide-141.2135290-linux.zip"
    },
+    {
+  	"type": "file",
+  	"source": "files/DroidBox_4.1.1-2015-07-10.zip",
+  	"destination": "/home/enisa/DroidBox_4.1.1-2015-07-10.zip"
+   },
 	{
   	"type": "file",
   	"source": "files/setup.sh",
